@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Person from './Person/Person';
 
 function App() {
+  const [personState, setPersonState] = useState({
+    person: [
+      { name: 'Dean', age: '34' },
+      { name: 'Kook', age: '40' },
+    ],
+  });
+
+  const switchNameHandler = () => {
+    console.log('Button is clicked');
+    setPersonState({
+      person: [
+        { name: 'Dean Kim', age: '34' },
+        { name: 'Kook Hee Park', age: '40' },
+      ],
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person name={personState.person[0].name} age={personState.person[0].age} />
+      <Person name={personState.person[1].name} age={personState.person[1].age} />
     </div>
   );
 }
